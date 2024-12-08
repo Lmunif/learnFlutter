@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp( MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // const MyApp({super.key});
@@ -9,9 +9,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text("Aplikasi Hello World"),),
-        body: Text("Hello World"),
+        appBar: AppBar(
+          title: Text("Aplikasi Hello World"),
+        ),
+        body: Center(child: Text("Hello World")),
       ),
-    ) ;
+    );
   }
 }
