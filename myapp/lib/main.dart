@@ -19,9 +19,11 @@ class MyApp extends StatelessWidget {
                 height: 50,
                 child: Text(
                   "Saya sedang melatih flutter Saya",
-                  maxLines: 2,
-                  overflow: TextOverflow.clip,
-                  softWrap: false,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 20),
                 ))),
       ),
     );
