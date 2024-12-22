@@ -12,22 +12,15 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text("Latihan Row dan Column"),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Text 1"),
-            Text("Text 2"),
-            Text("Text 3"),
-            Row(
-              children: [
-                Text("Text 1"),
-                Text("Text 2"),
-                Text("Text 3")
-              ],
-            )
-          ],
-        ),
+        body: Container(
+          color: Colors.red,
+          margin: EdgeInsets.all(10),
+          padding: EdgeInsets.all(10),
+          child: Container(
+            color: Colors.blue,
+            margin: EdgeInsets.all(10),
+          ),
+        )
       ),
     );
   }
