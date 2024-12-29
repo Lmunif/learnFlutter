@@ -35,6 +35,7 @@ int number = 0;
             children: [
               Text(number.toString(), style: TextStyle(fontSize: 10 + number.toDouble())),
               ElevatedButton(onPressed: TekanTombol, child: Text("Tambah bilangan")),
+              Text("  "),
               ElevatedButton(onPressed: KurangTombol, child: Text("Kurang bilangan"))
             ],
           ),
