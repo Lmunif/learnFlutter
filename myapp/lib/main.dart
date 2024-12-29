@@ -2,29 +2,43 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
-  // const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+int number = 0;
+  void TekanTombol(){
+    setState(() {
+      number = number + 1;
+    });
+  }
+  void KurangTombol(){
+    setState(() {
+      number = number - 1;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Latihan Row dan Column"),
+          title: Text("Stateful Widget Demo"),
         ),
-        body: Container(
-          color: Colors.red,
-          margin: EdgeInsets.all(10),
-          padding: EdgeInsets.all(10),
-          child: Container(
-            margin: EdgeInsets.all(10),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Colors.amber,Colors.blue])),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(number.toString()),
+              ElevatedButton(onPressed: TekanTombol, child: Text("Tambah bilangan")),
+              ElevatedButton(onPressed: KurangTombol, child: Text("Kurang bilangan"))
+            ],
           ),
-        )
+        ),
       ),
     );
   }
