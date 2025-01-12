@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
                       setState(() {
                         widgets.add(Text(
                           "Data ke-" + counter.toString(),
-                          style: TextStyle(fontSize: 35),
+                          style: TextStyle(fontSize: 35, color: counter % 2 != 1 ? Colors.amber : Colors.red),
                         ));
                         counter++;
                       });
