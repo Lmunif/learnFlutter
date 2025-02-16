@@ -12,19 +12,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Latihan Image"),
+          title: Text("Spacer Widged"),
         ),
         body: Center(
-          child: Container(
-            color: Colors.black,
-            width: 200,
-            height: 200,
-            padding: EdgeInsets.all(3),
-            child: Image(
-                image: AssetImage("images/kucing.jpg"),
-                    fit: BoxFit.contain,
-            ),
-          ),
+          child: Row(
+            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Spacer(flex: 1,),
+              Container(width: 80,height: 80, color: Color.fromARGB(99, 190, 71, 71),),
+              Spacer(flex: 2,),
+              Container(width: 80,height: 80, color: Color.fromARGB(198, 205, 207, 84),),
+              Spacer(flex: 3,),
+              Container(width: 80,height: 80, color: Color.fromARGB(92, 9, 104, 228),),
+              Spacer(flex: 2,),
+            ],
+          )
         ),
       ),
     );
