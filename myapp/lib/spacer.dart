@@ -1,8 +1,6 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'dart:async';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -12,19 +10,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Spacer Widged"),
+          title: const Text("Spacer Widged"),
         ),
         body: Center(
           child: Row(
             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Spacer(flex: 1,),
-              Container(width: 80,height: 80, color: Color.fromARGB(99, 190, 71, 71),),
-              Spacer(flex: 2,),
-              Container(width: 80,height: 80, color: Color.fromARGB(198, 205, 207, 84),),
-              Spacer(flex: 3,),
-              Container(width: 80,height: 80, color: Color.fromARGB(92, 9, 104, 228),),
-              Spacer(flex: 2,),
+              const Spacer(flex: 1,),
+              Container(width: 80,height: 80, color: const Color.fromARGB(99, 190, 71, 71),),
+              const Spacer(flex: 2,),
+              Container(width: 80,height: 80, color: const Color.fromARGB(198, 205, 207, 84),),
+              const Spacer(flex: 3,),
+              Container(width: 80,height: 80, color: const Color.fromARGB(92, 9, 104, 228),),
+              const Spacer(flex: 2,),
             ],
           )
         ),

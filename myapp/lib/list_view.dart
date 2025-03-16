@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Latihan Listview"),
+          title: const Text("Latihan Listview"),
         ),
         body: ListView(
           children: [
@@ -35,19 +35,19 @@ class _MyAppState extends State<MyApp> {
                     onPressed: () {
                       setState(() {
                         widgets.add(Text(
-                          "Data ke-" + counter.toString(),
-                          style: TextStyle(fontSize: 35),
+                          "Data ke-$counter",
+                          style: const TextStyle(fontSize: 35),
                         ));
                         counter++;
                       });
                     },
-                    child: Text("Tambah Data")),
+                    child: const Text("Tambah Data")),
                 ElevatedButton(onPressed: () {
                       setState(() {
                         widgets.removeLast();
                         counter--;
                       });
-                    }, child: Text("Hapus Data")),
+                    }, child: const Text("Hapus Data")),
               ],
             ),
             Column(

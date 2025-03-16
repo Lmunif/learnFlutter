@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,12 +10,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "Latihan Text Style",
             style: TextStyle(color: Colors.amber),
           ),
         ),
-        body: Center(
+        body: const Center(
           child: Text(
             "Ini adalah Text",
             style: TextStyle(

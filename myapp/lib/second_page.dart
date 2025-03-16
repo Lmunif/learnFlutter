@@ -8,7 +8,7 @@ class SecondPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Second Page"),
+          title: const Text("Second Page"),
         ),
         body: Center(
           child: Row(
@@ -18,23 +18,23 @@ class SecondPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    child: Text("Back"),
+                    child: const Text("Back"),
                     onPressed: () {
                       Navigator.pop(context);
                     },
                   ),
                 ],
               ),
-              Text("        "),
+              const Text("        "),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    child: Text("Logout"),
+                    child: const Text("Logout"),
                     onPressed: () {
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) {
-                        return LoginPage();
+                        return const LoginPage();
                       }));
                     },
                   ),

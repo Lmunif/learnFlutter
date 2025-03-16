@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Anonymous Method"),
+          title: const Text("Anonymous Method"),
         ),
         body: Center(
           child: Column(

@@ -7,14 +7,14 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Main Page"),),
+      appBar: AppBar(title: const Text("Main Page"),),
       body: Center(
         child: ElevatedButton(
-          child: Text("Go to Second Page"),
+          child: const Text("Go to Second Page"),
           onPressed: () {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) {
-                  return SecondPage();
+                  return const SecondPage();
                 }));
           },
         ),

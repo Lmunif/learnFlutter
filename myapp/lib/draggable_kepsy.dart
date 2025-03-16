@@ -1,8 +1,6 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'dart:async';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -21,7 +19,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Latihan Dragable"),
+          title: const Text("Latihan Dragable"),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -31,21 +29,12 @@ class _MyAppState extends State<MyApp> {
               children: [
                 Draggable<Color>(
                   data: color1,
-                  child: SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: Material(
-                      color: color1,
-                      shape: StadiumBorder(),
-                      elevation: 3,
-                    ),
-                  ),
                   childWhenDragging: SizedBox(
                     width: 50,
                     height: 50,
                     child: Material(
                       color: color1,
-                      shape: StadiumBorder(),
+                      shape: const StadiumBorder(),
                       elevation: 0,
                     ),
                   ),
@@ -54,28 +43,28 @@ class _MyAppState extends State<MyApp> {
                     height: 50,
                     child: Material(
                       color: color1.withOpacity(0.5),
-                      shape: StadiumBorder(),
+                      shape: const StadiumBorder(),
+                      elevation: 3,
+                    ),
+                  ),
+                  child: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: Material(
+                      color: color1,
+                      shape: const StadiumBorder(),
                       elevation: 3,
                     ),
                   ),
                 ),
                 Draggable<Color>(
                   data: color2,
-                  child: SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: Material(
-                      color: color2,
-                      shape: StadiumBorder(),
-                      elevation: 3,
-                    ),
-                  ),
                   childWhenDragging: SizedBox(
                     width: 50,
                     height: 50,
                     child: Material(
                       color: color2,
-                      shape: StadiumBorder(),
+                      shape: const StadiumBorder(),
                       elevation: 0,
                     ),
                   ),
@@ -84,7 +73,16 @@ class _MyAppState extends State<MyApp> {
                     height: 50,
                     child: Material(
                       color: color2.withOpacity(0.5),
-                      shape: StadiumBorder(),
+                      shape: const StadiumBorder(),
+                      elevation: 3,
+                    ),
+                  ),
+                  child: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: Material(
+                      color: color2,
+                      shape: const StadiumBorder(),
                       elevation: 3,
                     ),
                   ),
@@ -92,19 +90,19 @@ class _MyAppState extends State<MyApp> {
               ],
             ),
             DragTarget<Color>(
-              onWillAccept: (value) => true,
-              onAccept: (value) {isAccepted = true; targetColor = value;},
+              onWillAcceptWithDetails: (value) => true,
+              onAcceptWithDetails: (value) {isAccepted = true; targetColor = value;},
               builder: (context, candidates, rejected){
                 return (isAccepted) ? SizedBox(
                     width: 100,
                     height: 100,
                     child: Material(
                       color: targetColor,
-                      shape: StadiumBorder(),
+                      shape: const StadiumBorder(),
                       elevation: 3,
                     ),
                   ):
-                  SizedBox(
+                  const SizedBox(
                     width: 100,
                     height: 100,
                     child: Material(

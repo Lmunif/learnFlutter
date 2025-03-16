@@ -9,11 +9,11 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: ElevatedButton(
-          child: Text("LOGIN"),
+          child: const Text("LOGIN"),
           onPressed: () {
             Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (context) {
-                  return MainPage();
+                  return const MainPage();
                 }));
           },
         ),

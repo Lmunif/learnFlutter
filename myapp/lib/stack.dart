@@ -1,8 +1,6 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'dart:async';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -12,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Latihan Stack dan Align"),
+          title: const Text("Latihan Stack dan Align"),
         ),
         body: Stack(
           children: [
@@ -61,29 +59,29 @@ class MyApp extends StatelessWidget {
                 Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.all(10),
-                      child: Text(
+                      margin: const EdgeInsets.all(10),
+                      child: const Text(
                         "Ini adalah Text yang ada di lapisan tengah dari Stack",
                         style: TextStyle(fontSize: 30),
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.all(10),
-                      child: Text(
+                      margin: const EdgeInsets.all(10),
+                      child: const Text(
                         "Ini adalah Text yang ada di lapisan tengah dari Stack",
                         style: TextStyle(fontSize: 30),
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.all(10),
-                      child: Text(
+                      margin: const EdgeInsets.all(10),
+                      child: const Text(
                         "Ini adalah Text yang ada di lapisan tengah dari Stack",
                         style: TextStyle(fontSize: 30),
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.all(10),
-                      child: Text(
+                      margin: const EdgeInsets.all(10),
+                      child: const Text(
                         "Ini adalah Text yang ada di lapisan tengah dari Stack",
                         style: TextStyle(fontSize: 30),
                       ),
@@ -93,8 +91,8 @@ class MyApp extends StatelessWidget {
               ],
             ),
             Align(
-              alignment: Alignment(0.9, 0.9),
-              child: ElevatedButton(onPressed: (){}, child: Text("My Button"))),
+              alignment: const Alignment(0.9, 0.9),
+              child: ElevatedButton(onPressed: (){}, child: const Text("My Button"))),
             
           ],
         ),
