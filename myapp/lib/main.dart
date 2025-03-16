@@ -4,44 +4,40 @@ void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-// test
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          leading: const Icon(
-            Icons.adb,
-            color: Colors.white,
-          ),
-          title: const Text(
-            "Appbar Example",
-            style: TextStyle(color: Colors.white),
-          ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.settings),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(Icons.exit_to_app),
-              onPressed: () {},
-            ),
-          ],
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Color(0xff0096ff), Color(0xff6610f2)],
-                  begin: FractionalOffset.topLeft,
-                  end: FractionalOffset.bottomRight,
-                ),
-                image: DecorationImage(
-                    image: AssetImage("images/kucing.jpg"),
-                    fit: BoxFit.fitWidth,
-                    repeat: ImageRepeat.repeat)),
+        backgroundColor: Colors.green,
+        body: Container(
+          margin: EdgeInsets.all(10),
+          child: ListView(
+            children: [
+              buildCard(Icons.account_box, 'Account Box', Colors.blue, 7),
+              buildCard(Icons.adb, 'Serangga Box', Colors.red, 11),
+            ],
           ),
         ),
       ),
     );
   }
+}
+
+buildCard(
+    IconData iconData, String text, Color colorIcons, double evaluations) {
+  return Card(
+    elevation: evaluations,
+    child: Row(
+      children: [
+        Container(
+            margin: EdgeInsets.all(5),
+            child: Icon(
+              iconData,
+              color: colorIcons,
+            )),
+        Text(text)
+      ],
+    ),
+  );
 }

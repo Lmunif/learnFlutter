@@ -12,6 +12,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   List<Widget> widgets = [];
   int counter = 1;
+  double ukuran = 10;
 
   // _MyAppState() {
   //   for (int i = 0; i < 15; i++){
@@ -36,18 +37,28 @@ class _MyAppState extends State<MyApp> {
                       setState(() {
                         widgets.add(Text(
                           "Data ke-$counter",
-                          style: const TextStyle(fontSize: 35),
+                          style: TextStyle(
+                              fontSize: counter == 8
+                                  ? ukuran = ukuran + 100
+                                  : ukuran++),
                         ));
                         counter++;
                       });
                     },
                     child: const Text("Tambah Data")),
-                ElevatedButton(onPressed: () {
+                ElevatedButton(
+                    onPressed: () {
                       setState(() {
                         widgets.removeLast();
                         counter--;
+                        if (counter == 8) {
+                          ukuran = ukuran - 100;
+                        } else {
+                          ukuran--;
+                        }
                       });
-                    }, child: const Text("Hapus Data")),
+                    },
+                    child: const Text("Hapus Data")),
               ],
             ),
             Column(
