@@ -2,42 +2,52 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  bool bolean   = true;
+  String tulisan   = 'Munculkan';
+
+
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.green,
+        appBar: AppBar(title: Text("Latihan Text Field"),),
         body: Container(
-          margin: EdgeInsets.all(10),
-          child: ListView(
-            children: [
-              buildCard(Icons.account_box, 'Account Box', Colors.blue, 7),
-              buildCard(Icons.adb, 'Serangga Box', Colors.red, 11),
-            ],
+          margin: EdgeInsets.all(20),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                TextFormField(
+                  obscureText: bolean,
+                  onChanged: (value){
+                    setState(() {
+                      
+                    });
+                  },
+                  controller: controller,
+                ),
+                ElevatedButton(onPressed:(){
+                  bolean = false;
+                  tulisan = "sembunyikan";
+
+                  setState(() {
+                      
+                    });
+                }, child: Text(tulisan)),
+                Text(controller.text)
+              ],
           ),
         ),
       ),
     );
   }
-}
-
-buildCard(
-    IconData iconData, String text, Color colorIcons, double evaluations) {
-  return Card(
-    elevation: evaluations,
-    child: Row(
-      children: [
-        Container(
-            margin: EdgeInsets.all(5),
-            child: Icon(
-              iconData,
-              color: colorIcons,
-            )),
-        Text(text)
-      ],
-    ),
-  );
 }
