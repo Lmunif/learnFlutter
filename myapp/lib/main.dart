@@ -12,7 +12,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   bool bolean   = true;
-  String tulisan   = 'Munculkan';
+  String tulisan   = 'Munculkan Pertama';
 
 
   TextEditingController controller = TextEditingController();
@@ -36,9 +36,16 @@ class _MyAppState extends State<MyApp> {
                   controller: controller,
                 ),
                 ElevatedButton(onPressed:(){
-                  bolean = false;
-                  tulisan = "sembunyikan";
-
+                  // bolean = false;
+                  // tulisan = "sembunyikan";
+                  if (bolean == true ){
+                    tulisan = "sembunyikan";
+                    bolean = false;
+                  }
+                  else {
+                    tulisan = "munculkan";
+                    bolean = true;
+                  }
                   setState(() {
                       
                     });
