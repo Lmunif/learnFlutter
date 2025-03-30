@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() => runApp(const MyApp());
 
@@ -10,73 +12,100 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  bool isObscured = true;
+  String username = '';
+  String password = '';
 
-   bool isObscured = true; // Untuk menyembunyikan/memperlihatkan password
+  final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
+  Future<void> sendData() async {
+    final url = Uri.parse("https://dummyjson.com/auth/login?");
+    final response = await http.post(
+      url,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: jsonEncode({
+        "username": username,
+        "password": password,
+      }),
+    );
 
+    if (response.statusCode == 201 || response.statusCode == 200) {
+      final responseData = jsonDecode(response.body);
+      print("Response: $responseData");
+      _scaffoldMessengerKey.currentState?.showSnackBar(
+        const SnackBar(content: Text("Berhasil Login!")),
+      );
+    } else {
+      print("Error: ${response.statusCode}");
+      _scaffoldMessengerKey.currentState?.showSnackBar(
+        const SnackBar(content: Text("Gagal Login")),
+      );
+    }
+  }
 
-  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey: _scaffoldMessengerKey, // Tambahkan ini
       home: Scaffold(
-        appBar: AppBar(title: Text("Latihan Text Field"),),
+        appBar: AppBar(title: const Text("Latihan Text Field")),
         body: Container(
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               TextField(
+                onChanged: (value) {
+                  setState(() {
+                    username = value;
+                  });
+                },
                 decoration: InputDecoration(
                   fillColor: Colors.lightBlue[50],
                   filled: true,
-                  // icon: Icon(Icons.adb),
-                  suffix: Container(width: 15, height: 15, color: Colors.red,),
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: const Icon(Icons.person),
                   prefixText: "Name: ",
                   labelText: "Nama Lengkap",
                   hintText: "Nama Lengkapnya loh..",
-                  hintStyle: TextStyle(fontSize: 20),
-                  prefixStyle: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))
+                  hintStyle: const TextStyle(fontSize: 20),
+                  prefixStyle: const TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 ),
-                maxLength: 5,
               ),
               TextField(
+                onChanged: (value) {
+                  setState(() {
+                    password = value;
+                  });
+                },
                 obscureText: isObscured,
                 decoration: InputDecoration(
-                fillColor: Colors.lightBlue[50],
-                filled: true,
-                prefixIcon: GestureDetector(
+                  fillColor: Colors.lightBlue[50],
+                  filled: true,
+                  prefixIcon: GestureDetector(
                     onTap: () {
                       setState(() {
-                        isObscured = !isObscured; // Toggle visibility
+                        isObscured = !isObscured;
                       });
                     },
                     child: Icon(
                       isObscured ? Icons.visibility : Icons.visibility_off,
-                      // color: Colors.blue,
                     ),
                   ),
-                //   suffixIcon: IconButton( // Ikon bisa diklik
-                //   icon: Icon(Icons.remove_red_eye),
-                //   onPressed: () {
-                //     print("Ikon diklik!");
-                //   },
-                // ),
-                  // icon: Icon(Icons.adb),
-                  // suffix: Container(width: 15, height: 15, color: Colors.red,),
-                  // prefixIcon: Icon(Icons.remove_red_eye),
                   prefixText: "Password: ",
                   labelText: "Password",
                   hintText: "Password harus 5 karakter",
-                  hintStyle: TextStyle(fontSize: 20),
-                  prefixStyle: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))
+                  hintStyle: const TextStyle(fontSize: 20),
+                  prefixStyle: const TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 ),
-                maxLength: 5,
               ),
-              ElevatedButton(onPressed: (){}, child: Text("Submit"))
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: sendData,
+                child: const Text("Submit"),
+              ),
             ],
           ),
         ),
