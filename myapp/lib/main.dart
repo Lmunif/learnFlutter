@@ -17,7 +17,10 @@ class _MyAppState extends State<MyApp> {
   String password = '';
 
   final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
-
+  /*
+  Username : emilys
+  Password : emilyspass
+  */
   Future<void> sendData() async {
     final url = Uri.parse("https://dummyjson.com/auth/login?");
     final response = await http.post(
