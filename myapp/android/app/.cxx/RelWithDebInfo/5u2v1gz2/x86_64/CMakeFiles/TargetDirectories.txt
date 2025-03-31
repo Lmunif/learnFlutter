@@ -1,0 +1,2 @@
+/Users/achmadalwani/Documents/Documents/doc/Learn/learnFlutter/myapp/android/app/.cxx/RelWithDebInfo/5u2v1gz2/x86_64/CMakeFiles/edit_cache.dir
+/Users/achmadalwani/Documents/Documents/doc/Learn/learnFlutter/myapp/android/app/.cxx/RelWithDebInfo/5u2v1gz2/x86_64/CMakeFiles/rebuild_cache.dir
