@@ -16,17 +16,20 @@ class MyApp extends StatelessWidget {
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context); // 👉 simpan MediaQuery dalam variabel
+
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Latihan Media Query"),
-        ),
-        body: (MediaQuery.of(context).orientation == Orientation.portrait)
-            ? Column(
-                children: generateContainer,
-              )
-            : Row(
-                children: generateContainer,
-              ));
+      appBar: AppBar(
+        title: Text("Latihan Media Query"),
+      ),
+      body: (mediaQuery.orientation != Orientation.portrait)
+          ? Row(
+              children: generateContainer,
+            )
+          : Column(
+              children: generateContainer,
+            ),
+    );
   }
 
   List<Widget> get generateContainer {
