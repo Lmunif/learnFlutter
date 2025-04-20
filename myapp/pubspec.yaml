@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.13.6
+  audioplayers: ^5.2.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -64,6 +65,8 @@ flutter:
      - images/kucing.jpg
      - images/bg.jpg
      - images/bg.png
+     - assets/sounds/like.mp3
+
 
   #   - images/a_dot_ham.jpeg
 

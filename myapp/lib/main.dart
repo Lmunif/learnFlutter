@@ -1,6 +1,6 @@
 import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 void main() => runApp(const MyApp());
 
@@ -10,6 +10,8 @@ class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 }
+
+
 
 class _MyAppState extends State<MyApp> {
   int likeVar = 0;
@@ -29,6 +31,11 @@ class _MyAppState extends State<MyApp> {
     "Nov",
     "Des"
   ];
+  final AudioPlayer _audioPlayer = AudioPlayer();
+
+ Future<void> _playSound() async {
+    await _audioPlayer.play(AssetSource('sounds/like.mp3'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +143,8 @@ class _MyAppState extends State<MyApp> {
                                         size: 18,
                                       ),
                                       tooltip: 'Like',
-                                      onPressed: () {
+                                      onPressed: () async {
+                                      await _playSound();
                                         setState(() {
                                           DateTime dateTimes = DateTime.now();
                                           likeVar++;
