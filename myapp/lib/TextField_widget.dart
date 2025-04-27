@@ -20,9 +20,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text("Latihan Text Field"),),
+        appBar: AppBar(title: const Text("Latihan Text Field"),),
         body: Container(
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

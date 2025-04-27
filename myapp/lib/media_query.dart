@@ -14,11 +14,13 @@ class MyApp extends StatelessWidget {
 }
 
 class MainPage extends StatelessWidget {
+  const MainPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Latihan Media Query"),
+          title: const Text("Latihan Media Query"),
         ),
         body: (MediaQuery.of(context).orientation == Orientation.portrait)
             ? Column(

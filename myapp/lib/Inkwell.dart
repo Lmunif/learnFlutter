@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () {},
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.amber),
+                          backgroundColor: WidgetStateProperty.all(Colors.amber),
                         ),
                         child: const Text("Elevated Button"),
                       ),
@@ -85,9 +85,9 @@ class MyApp extends StatelessWidget {
                     border: Border.all(color: Colors.yellow, width: 2), // Border untuk Column kanan
                   ),
                   padding: const EdgeInsets.all(8),
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
                         "Tes",
                         style: TextStyle(fontSize: 20),
@@ -101,9 +101,9 @@ class MyApp extends StatelessWidget {
                     border: Border.all(color: Colors.orange, width: 2), // Border untuk Column kanan
                   ),
                   padding: const EdgeInsets.all(8),
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
                         "Tes2",
                         style: TextStyle(fontSize: 20),

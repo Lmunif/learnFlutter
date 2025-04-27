@@ -20,9 +20,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text("Latihan Text Field"),),
+        appBar: AppBar(title: const Text("Latihan Text Field"),),
         body: Container(
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -32,12 +32,12 @@ class _MyAppState extends State<MyApp> {
                   filled: true,
                   // icon: Icon(Icons.adb),
                   suffix: Container(width: 15, height: 15, color: Colors.red,),
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: const Icon(Icons.person),
                   prefixText: "Name: ",
                   labelText: "Nama Lengkap",
                   hintText: "Nama Lengkapnya loh..",
-                  hintStyle: TextStyle(fontSize: 20),
-                  prefixStyle: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
+                  hintStyle: const TextStyle(fontSize: 20),
+                  prefixStyle: const TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))
                 ),
                 maxLength: 5,
@@ -70,13 +70,13 @@ class _MyAppState extends State<MyApp> {
                   prefixText: "Password: ",
                   labelText: "Password",
                   hintText: "Password harus 5 karakter",
-                  hintStyle: TextStyle(fontSize: 20),
-                  prefixStyle: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
+                  hintStyle: const TextStyle(fontSize: 20),
+                  prefixStyle: const TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))
                 ),
                 maxLength: 5,
               ),
-              ElevatedButton(onPressed: (){}, child: Text("Submit"))
+              ElevatedButton(onPressed: (){}, child: const Text("Submit"))
             ],
           ),
         ),

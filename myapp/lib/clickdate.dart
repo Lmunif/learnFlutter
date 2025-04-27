@@ -35,16 +35,16 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "Custom Card Example",
             style: TextStyle(color: Colors.white),
           ),
-          backgroundColor: Color(0xFF8C062F),
+          backgroundColor: const Color(0xFF8C062F),
         ),
         body: Stack(
           children: [
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   gradient: LinearGradient(
                       colors: [Color(0xFFFE5788), Color(0xFFF56D5D)])),
             ),
@@ -61,7 +61,7 @@ class _MyAppState extends State<MyApp> {
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(4),
-                                image: DecorationImage(
+                                image: const DecorationImage(
                                     image: NetworkImage(
                                         "https://st.depositphotos.com/1081688/3132/i/450/depositphotos_31325893-stock-photo-white-paper-texture.jpg"),
                                     fit: BoxFit.cover)),
@@ -69,7 +69,7 @@ class _MyAppState extends State<MyApp> {
                         ),
                         Container(
                           height: MediaQuery.of(context).size.height * 0.35,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(4),
                                 topRight: Radius.circular(4),
@@ -88,7 +88,7 @@ class _MyAppState extends State<MyApp> {
                           child: Center(
                             child: Column(
                               children: [
-                                Text(
+                                const Text(
                                   "Beautiful Sunset At Paddy Field",
                                   maxLines: 2,
                                   textAlign: TextAlign.center,
@@ -96,28 +96,18 @@ class _MyAppState extends State<MyApp> {
                                       color: Color(0xFFF56D5D), fontSize: 25),
                                 ),
                                 Container(
-                                  margin: EdgeInsets.fromLTRB(0, 20, 0, 15),
+                                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 15),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text(
+                                      const Text(
                                         "Posted on ",
                                         style: TextStyle(
                                             color: Colors.grey, fontSize: 12),
                                       ),
                                       Text(
-                                        dateTimes[dateTime.month] +
-                                            " " +
-                                            dateTime.day.toString() +
-                                            ", " +
-                                            dateTime.year.toString() +
-                                            " " +
-                                            dateTime.hour.toString() +
-                                            ":" +
-                                            dateTime.minute.toString() +
-                                            ":" +
-                                            dateTime.second.toString(),
-                                        style: TextStyle(
+                                        "${dateTimes[dateTime.month]} ${dateTime.day}, ${dateTime.year} ${dateTime.hour}:${dateTime.minute}:${dateTime.second}",
+                                        style: const TextStyle(
                                             color: Color(0xFFF56D5D),
                                             fontSize: 12),
                                       )
@@ -126,7 +116,7 @@ class _MyAppState extends State<MyApp> {
                                 ),
                                 Row(
                                   children: [
-                                    Spacer(
+                                    const Spacer(
                                       flex: 15,
                                     ),
                                     IconButton(
@@ -144,14 +134,14 @@ class _MyAppState extends State<MyApp> {
                                         });
                                       },
                                     ),
-                                    Spacer(
+                                    const Spacer(
                                       flex: 1,
                                     ),
                                     Text(
                                       likeVar.toString(),
-                                      style: TextStyle(color: Colors.grey),
+                                      style: const TextStyle(color: Colors.grey),
                                     ),
-                                    Spacer(
+                                    const Spacer(
                                       flex: 1,
                                     ),
                                     IconButton(
@@ -167,22 +157,22 @@ class _MyAppState extends State<MyApp> {
                                         });
                                       },
                                     ),
-                                    Spacer(
+                                    const Spacer(
                                       flex: 3,
                                     ),
-                                    Icon(
+                                    const Icon(
                                       Icons.comment,
                                       size: 18,
                                       color: Colors.grey,
                                     ),
-                                    Spacer(
+                                    const Spacer(
                                       flex: 1,
                                     ),
-                                    Text(
+                                    const Text(
                                       "888",
                                       style: TextStyle(color: Colors.grey),
                                     ),
-                                    Spacer(
+                                    const Spacer(
                                       flex: 15,
                                     ),
                                   ],

@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () {},
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.amber),
+                          backgroundColor: WidgetStateProperty.all(Colors.amber),
                         ),
                         child: const Text("Elevated Button"),
                       ),
@@ -91,7 +91,7 @@ class MyApp extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () {},
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.lightBlueAccent),
+                          backgroundColor: WidgetStateProperty.all(Colors.lightBlueAccent),
                         ),
                         child: const Text("Elevated Button"),
                       ),
