@@ -1,260 +1,124 @@
-// import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  int likeVar = 0;
-  int commentVar = 0;
-  DateTime dateTime = DateTime.now();
-  List<String> dateTimes = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "Mei",
-    "Jun",
-    "Jul",
-    "Agus",
-    "Sept",
-    "Oct",
-    "Nov",
-    "Des"
-  ];
-  final AudioPlayer _audioPlayer = AudioPlayer();
-
-  Future<void> _playSound() async {
-    await _audioPlayer.play(AssetSource('sounds/like.mp3'));
-  }
-
-  @override
-  final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey =
-      GlobalKey<ScaffoldMessengerState>();
-
-  TextEditingController _controller = TextEditingController();
-
-  void initState() {
-    super.initState();
-    // Kasih value awal ke textbox
-    _controller.text = "";
-  }
-
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Custom Card Example",
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: const Color(0xFF8C062F),
-        ),
-        body: Stack(
-          children: [
-            Container(
-              decoration: const BoxDecoration(
+      home: MainPage(),
+    );
+  }
+}
+
+class MainPage extends StatelessWidget {
+  const MainPage({super.key});
+  double getSmallDiameter(BuildContext context) =>
+      MediaQuery.of(context).size.width * 2 / 3;
+  double getBigDiameter(BuildContext context) =>
+      MediaQuery.of(context).size.width * 7 / 8;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xFFEEEEEE),
+      body: Stack(
+        children: [
+          Positioned(
+            right: -getSmallDiameter(context) / 3,
+            top: -getSmallDiameter(context) / 3,
+            child: Container(
+              width: getSmallDiameter(context),
+              height: getSmallDiameter(context),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
                   gradient: LinearGradient(
-                      colors: [Color(0xFFFE5788), Color(0xFFF56D5D)])),
+                      colors: [Color(0xFFB226B2), Color(0xFFFF6DA7)],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter)),
             ),
-            Center(
-              child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: MediaQuery.of(context).size.height * 0.9,
-                  child: Card(
-                    elevation: 1,
-                    child: Stack(
-                      children: [
-                        Opacity(
-                          opacity: 0.7,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                image: const DecorationImage(
-                                    image: NetworkImage(
-                                        "https://st.depositphotos.com/1081688/3132/i/450/depositphotos_31325893-stock-photo-white-paper-texture.jpg"),
-                                    fit: BoxFit.cover)),
+          ),
+          Positioned(
+            left: -getBigDiameter(context) / 4,
+            top: -getBigDiameter(context) / 4,
+            child: Container(
+              child: Center(
+                child: Text(
+                  "dribblee",
+                  style: TextStyle(
+                      fontFamily: "Pacifico",
+                      fontSize: 30,
+                      color: Colors.white),
+                ),
+              ),
+              width: getBigDiameter(context),
+              height: getBigDiameter(context),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                      colors: [Color(0xFFB226B2), Color(0xFFFF4891)],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter)),
+            ),
+          ),
+          Positioned(
+            right: -getBigDiameter(context) / 2,
+            bottom: -getBigDiameter(context) / 2,
+            child: Container(
+              width: getBigDiameter(context),
+              height: getBigDiameter(context),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle, color: Color(0xFFF3E9EE)),
+            ),
+          ),
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: ListView(
+                children: [
+                  Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(5)),
+                      margin: EdgeInsets.fromLTRB(20, 300, 20, 10),
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 25),
+                      child: Column(
+                        children: [
+                          TextField(
+                            decoration: InputDecoration(
+                                icon: Icon(
+                                  Icons.email,
+                                  color: Color(0xFFFF4891),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Color(0xFFFF4891))),
+                                labelText: "Email: ",
+                                labelStyle:
+                                    TextStyle(color: Color(0xFFFF4891))),
                           ),
-                        ),
-                        Container(
-                          height: MediaQuery.of(context).size.height * 0.35,
-                          decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(4),
-                                topRight: Radius.circular(4),
-                              ),
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      "https://cdn.pixabay.com/photo/2013/10/09/02/26/lake-192979_1280.jpg"),
-                                  fit: BoxFit.cover)),
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(
-                              20,
-                              50 + (MediaQuery.of(context).size.height * 0.35),
-                              20,
-                              20),
-                          child: Center(
-                            child: Column(
-                              children: [
-                                const Text(
-                                  "Beautiful Sunset At Paddy Field",
-                                  maxLines: 2,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Color(0xFFF56D5D), fontSize: 25),
+                          TextField(
+                            obscureText: true,
+                            decoration: InputDecoration(
+                                icon: Icon(
+                                  Icons.vpn_key,
+                                  color: Color(0xFFFF4891),
                                 ),
-                                Container(
-                                  margin:
-                                      const EdgeInsets.fromLTRB(0, 20, 0, 15),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Text(
-                                        "Posted on ",
-                                        style: TextStyle(
-                                            color: Colors.grey, fontSize: 12),
-                                      ),
-                                      Text(
-                                        "${dateTimes[dateTime.month]} ${dateTime.day}, ${dateTime.year} ${dateTime.hour}:${dateTime.minute}:${dateTime.second}",
-                                        style: const TextStyle(
-                                            color: Color(0xFFF56D5D),
-                                            fontSize: 12),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    const Spacer(
-                                      flex: 15,
-                                    ),
-                                    IconButton(
-                                      icon: const Icon(
-                                        Icons.thumb_up,
-                                        color: Colors.grey,
-                                        size: 18,
-                                      ),
-                                      tooltip: 'Like',
-                                      onPressed: () async {
-                                        // await _playSound();
-                                        setState(() {
-                                          DateTime dateTimes = DateTime.now();
-                                          likeVar++;
-                                          dateTime = dateTimes;
-                                        });
-                                      },
-                                    ),
-                                    const Spacer(
-                                      flex: 1,
-                                    ),
-                                    Text(
-                                      likeVar.toString(),
-                                      style:
-                                          const TextStyle(color: Colors.grey),
-                                    ),
-                                    const Spacer(
-                                      flex: 1,
-                                    ),
-                                    IconButton(
-                                      icon: const Icon(
-                                        Icons.thumb_down,
-                                        color: Colors.grey,
-                                        size: 18,
-                                      ),
-                                      tooltip: 'Dislike',
-                                      onPressed: () {
-                                        if (likeVar != 0) {
-                                          setState(() {
-                                            likeVar--;
-                                          });
-                                        }
-                                      },
-                                    ),
-                                    const Spacer(
-                                      flex: 3,
-                                    ),
-                                    const Icon(
-                                      Icons.comment,
-                                      size: 18,
-                                      color: Colors.grey,
-                                    ),
-                                    const Spacer(
-                                      flex: 1,
-                                    ),
-                                    Text(
-                                      commentVar.toString(),
-                                      style:
-                                          const TextStyle(color: Colors.grey),
-                                    ),
-                                    const Spacer(
-                                      flex: 15,
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    const Spacer(
-                                      flex: 1,
-                                    ),
-                                    SizedBox(
-                                      width: 150, // Lebar kecil
-                                      height: 40, // Tinggi kecil
-                                      child: TextField(
-                                        controller: _controller,
-                                        decoration: InputDecoration(
-                                          hintText: 'Comment...',
-                                          contentPadding: EdgeInsets.symmetric(
-                                              vertical: 10, horizontal: 10),
-                                          border: OutlineInputBorder(),
-                                        ),
-                                      ),
-                                    ),
-                                    IconButton(
-                                      icon: const Icon(
-                                        Icons.add_comment,
-                                        color: Colors.grey,
-                                        size: 18,
-                                      ),
-                                      tooltip: 'Add Comment',
-                                      onPressed: () {
-                                        if (_controller.text == "") {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                                content: Text('Ada error!'),
-                                                backgroundColor: Colors.red),
-                                          );
-                                        } else {
-                                          setState(() {
-                                            commentVar++;
-                                            _controller.text = "";
-                                          });
-                                        }
-                                      },
-                                    ),
-                                    const Spacer(
-                                      flex: 1,
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )),
-            )
-          ],
-        ),
+                                focusedBorder: UnderlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Color(0xFFFF4891))),
+                                labelText: "Password: ",
+                                labelStyle:
+                                    TextStyle(color: Color(0xFFFF4891))),
+                          )
+                        ],
+                      ))
+                ],
+              ))
+        ],
       ),
     );
   }
