@@ -66,6 +66,10 @@ flutter:
      - images/bg.jpg
      - images/bg.png
      - assets/sounds/like.mp3
+     - assets/pictures/fb.png
+     - assets/pictures/x.png
+
+
 
 
   #   - images/a_dot_ham.jpeg
