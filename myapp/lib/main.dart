@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qrscan/qrscan.dart' as scanner;
 
 void main() => runApp(MyApp());
 
@@ -30,14 +31,28 @@ class _MainPageState extends State<MainPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(text),
+            Text(
+              text,
+              style: TextStyle(fontSize: 20),
+            ),
             SizedBox(
               height: 20,
             ),
             ElevatedButton(
               child: Text("Scan QR"),
-              onPressed: () {
-                // Aksi saat tombol ditekan
+              onPressed: () async {
+                // Memanggil fungsi scan dan menangani hasilnya
+                String? scannedText = await scanner.scan();
+                if (scannedText != null) {
+                  setState(() {
+                    text = scannedText; // Update text dengan hasil scan
+                  });
+                } else {
+                  // Menangani kasus jika pemindaian dibatalkan
+                  setState(() {
+                    text = "Pemindaian dibatalkan"; 
+                  });
+                }
               },
             ),
           ],
