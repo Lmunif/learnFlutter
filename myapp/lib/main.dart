@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:qrscan/qrscan.dart' as scanner;
+import 'package:mobile_scanner/mobile_scanner.dart';
+import 'qr_scan_page.dart'; // jika QRScanPage dipisah di file lain
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -19,7 +22,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  String text = "Hasil QR Scan";
+  String result = 'Hasil QR Code akan muncul di sini';
 
   @override
   Widget build(BuildContext context) {
@@ -32,25 +35,21 @@ class _MainPageState extends State<MainPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              text,
-              style: TextStyle(fontSize: 20),
+              result,
+              style: TextStyle(fontSize: 18),
+              textAlign: TextAlign.center,
             ),
-            SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: 20),
             ElevatedButton(
-              child: Text("Scan QR"),
+              child: Text("Scan QR Code"),
               onPressed: () async {
-                // Memanggil fungsi scan dan menangani hasilnya
-                String? scannedText = await scanner.scan();
-                if (scannedText != null) {
+                final hasil = await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => QRScanPage()),
+                );
+                if (hasil != null) {
                   setState(() {
-                    text = scannedText; // Update text dengan hasil scan
-                  });
-                } else {
-                  // Menangani kasus jika pemindaian dibatalkan
-                  setState(() {
-                    text = "Pemindaian dibatalkan"; 
+                    result = hasil;
                   });
                 }
               },
