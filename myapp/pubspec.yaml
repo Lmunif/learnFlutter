@@ -93,6 +93,15 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    - family: Cardo
+      fonts:
+        - asset: fonts/Cardo-Regular.ttf
+    - family: Gabriola
+      fonts:
+        - asset: fonts/Gabriola.ttf
+    - family: Milonga
+      fonts:
+        - asset: fonts/Milonga-Regular.ttf
     - family: CrashLandingBB
       fonts:
         - asset: fonts/CrashLandingBB.ttf
