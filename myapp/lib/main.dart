@@ -1,10 +1,10 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:myapp/post_result_model.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -13,29 +13,32 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  PostResult postResult = null;
+  PostResult? postResult;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text("API Demo"),),
+        appBar: AppBar(title: const Text("API Demo")),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text((postResult != null ? postResult.id + "|" +
-              postResult.name + "|" +
-              postResult.job + "|" +
-              postResult.created : 'Tidak ada data ')),
-              ElevatedButton(onPressed: () {
-                PostResult.connectToAPI("Badu", "Dokter").then((value){
-                  postResult = value;
-                  setState(() {
-                    
+              Text(
+                postResult != null
+                    ? '${postResult!.id} | ${postResult!.name} | ${postResult!.job} | ${postResult!.created}'
+                    : 'Tidak ada data',
+                textAlign: TextAlign.center,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  PostResult.connectToAPI("Badu", "Dokter").then((value) {
+                    setState(() {
+                      postResult = value;
+                    });
                   });
-                });
-              }, child: Text("POST"),
-              
+                },
+                child: const Text("POST"),
               ),
             ],
           ),
