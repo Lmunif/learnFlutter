@@ -2,34 +2,36 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class PostResult {
-  final String id;
-  final String name;
-  final String job;
-  final String created;
+  final int id;
+  final String firstName;
+  final String lastName;
+  final String age;
 
   PostResult({
     required this.id,
-    required this.name,
-    required this.job,
-    required this.created,
+    required this.firstName,
+    required this.lastName,
+    required this.age,
   });
 
   factory PostResult.createPostResult(Map<String, dynamic> object) {
     return PostResult(
       id: object['id'],
-      name: object['name'],
-      job: object['job'],
-      created: object['createdAt'],
+      firstName: object['firstName'],
+      lastName: object['lastName'],
+      age: object['age'],
     );
   }
 
-  static Future<PostResult> connectToAPI(String name, String job) async {
-    String apiURL = "https://reqres.in/api/users";
+  static Future<PostResult> connectToAPI(
+    String firstName, String lastName, String age) async {
+    String apiURL = "https://dummyjson.com/users/add";
 
     var apiResult = await http.post(
       Uri.parse(apiURL),
       headers: {'Content-Type': 'application/json'},
-      body: json.encode({"name": name, "job": job}),
+      body: json
+          .encode({"firstName": firstName, "lastName": lastName, "age": age}),
     );
 
     if (apiResult.statusCode == 201) {

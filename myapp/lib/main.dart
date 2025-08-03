@@ -26,13 +26,14 @@ class _MyAppState extends State<MyApp> {
             children: [
               Text(
                 postResult != null
-                    ? '${postResult!.id} | ${postResult!.name} | ${postResult!.job} | ${postResult!.created}'
-                    : 'Tidak ada data',
+                    ? '${postResult!.id} | ${postResult!.firstName} | ${postResult!.lastName} | ${postResult!.age}'
+                    : 'Tidak ada datas',
                 textAlign: TextAlign.center,
               ),
               ElevatedButton(
                 onPressed: () {
-                  PostResult.connectToAPI("Badu", "Dokter").then((value) {
+                  PostResult.connectToAPI("alwani", "achmad", "25")
+                      .then((value) {
                     setState(() {
                       postResult = value;
                     });
