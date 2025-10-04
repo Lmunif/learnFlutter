@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/cart_kepsy.dart';
-import 'package:myapp/money_kepsy.dart';
-import 'package:provider/provider.dart';
-import 'application_color.dart';
+// Hapus import yang tidak digunakan jika ColorBloc tidak ada:
+// import 'package:myapp/color_bloc.dart'; 
+import 'package:flutter_bloc/flutter_bloc.dart'; // Import ini dibutuhkan untuk BlocProvider, BlocBuilder, dll.
+import 'package:myapp/color_blocv2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,94 +14,71 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider<MoneyKepsy>(
-            create: (context) => MoneyKepsy(),
+      // 1. Menggunakan BlocProvider.value atau BlocProvider.builder
+      // Pastikan tipe Bloc yang disediakan (ColorBlocv2) sesuai dengan yang dikembalikan di create:
+      home: BlocProvider<ColorBlocv2>(
+        // Menggunakan create untuk inisialisasi Bloc
+        // Pastikan ColorBlocv2() yang dikembalikan
+        create: (context) => ColorBlocv2(), 
+        child: const MainPage(),
+      ),
+    );
+  }
+}
+
+class MainPage extends StatelessWidget {
+  const MainPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // 2. Akses Bloc menggunakan context.read<ColorBlocv2>() untuk memanggil fungsi (dispatch)
+    // Atau menggunakan context.watch<ColorBlocv2>() untuk mendengarkan perubahan, tapi 
+    // di sini kita hanya perlu memanggil event, jadi context.read lebih efisien.
+    // Jika Anda ingin mempertahankan sintaks lama, BlocProvider.of<ColorBlocv2>(context) sudah benar,
+    // namun seringkali disarankan untuk menggunakan ekstensi context.
+    
+    // Perhatikan: Dalam implementasi bloc/flutter_bloc modern, dispatch() telah diganti dengan add().
+    // Kita akan menggunakan 'add' dan memperbaiki color_blocv2.dart.
+    final ColorBlocv2 bloc = context.read<ColorBlocv2>(); 
+
+    int tanda = 0;
+
+    return Scaffold(
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            backgroundColor: Colors.amber, 
+            onPressed: () {
+              // Ganti .dispatch dengan .add sesuai praktik BLoC modern
+              bloc.add(ColorEvent.to_amber);
+              tanda = 0;
+            },
+            child: const Icon(Icons.wb_sunny, color: Colors.white),
           ),
-          ChangeNotifierProvider<CartKepsy>(
-            create: (context) => CartKepsy(),
+          const SizedBox(width: 10),
+          FloatingActionButton(
+            backgroundColor: Colors.lightBlue, 
+            onPressed: () {
+              // Ganti .dispatch dengan .add sesuai praktik BLoC modern
+              bloc.add(ColorEvent.to_light_blue);
+              tanda = 1;
+            },
+            child: const Icon(Icons.cloud, color: Colors.white,)
           ),
         ],
-        child: Scaffold(
-          floatingActionButton: Consumer<MoneyKepsy>(
-            builder: (context, money, _) => Consumer<CartKepsy>(
-              builder: (context, cart, _) => FloatingActionButton(
-                onPressed: () {            
-                  if (money.balance >= 500){
-                    cart.quantity += 1;
-                    money.balance -= 500;
-                  }
-                },
-                child: Icon(Icons.add_shopping_cart),
-                backgroundColor: Colors.pink,
-              ),
-            ),
-          ),
-          appBar: AppBar(
-            backgroundColor: Colors.purple,
-            title: Text("Multi Provider"),
-          ),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Balance"),
-                    Container(
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Consumer<MoneyKepsy>(
-                          builder: (context,MoneyKepsy, _) => Text(
-                            MoneyKepsy.balance.toString(),
-                            style: TextStyle(
-                                color: Colors.purple,
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ),
-                      ),
-                      height: 30,
-                      width: 150,
-                      margin: EdgeInsets.all(5),
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.purple[100],
-                          border: Border.all(color: Colors.purple, width: 2)),
-                    )
-                  ],
-                ),
-                Container(
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Consumer<CartKepsy>(builder: (context,CartKepsy, _) => Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Apple (500) X " + CartKepsy.quantity.toString(),
-                            style: TextStyle(
-                                color: Colors.black, fontWeight: FontWeight.w700),
-                          ),
-                          Text(
-                            (500 * CartKepsy.quantity).toString(),
-                            style: TextStyle(
-                                color: Colors.black, fontWeight: FontWeight.w700),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  height: 30,
-                  margin: EdgeInsets.all(5),
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(color: Colors.black, width: 2)),
-                )
-              ],
-            ),
+      ),
+      appBar: AppBar(title: const Text("BLoC dengan flutter_bloc")),
+      body: Center(
+        // 3. Menggunakan BlocBuilder
+        child: BlocBuilder<ColorBlocv2, Color>(
+          // Perbaiki penulisan: 'builder' harus huruf kecil
+          builder: (context, currentColor) => AnimatedContainer(
+            width: 100,
+            height: 100,
+            color: currentColor,
+            duration: const Duration(milliseconds: 500),
+            child: tanda == 0 ? Icon(Icons.wb_sunny, color: Colors.white, size: 50,) : Icon(Icons.cloud, color: Colors.white, size: 50,)
           ),
         ),
       ),
