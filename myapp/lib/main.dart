@@ -23,11 +23,11 @@ class MyApp extends StatelessWidget {
 }
 
 class CustomProgressBar extends StatelessWidget {
-  final double width;
-  final double value;
-  final double totalValue;
+  final double  width ;
+  final double  value;
+  final double  totalValue;
 
-  CustomProgressBar({this.width, this.value, this.totalValue});
+  const CustomProgressBar({Key? key, required this.width, required this.value, required this.totalValue}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
